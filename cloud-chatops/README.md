@@ -120,3 +120,21 @@ The `secrets.json` file should look like the below and there is a template [here
   "GITHUB_TOKEN": "<your-token>"
 }
 ```
+
+### Automatic Container Update
+
+To pull the latest `docker-compose` file automatically, you can copy the contents of the cron_clone.sh file and create a new file in either the cron.hourly, cron.daily, cron.weekly, or cron.monthly directories. These directories can be found in `$HOME/etc/...`.
+
+Once created, you will need to change the file permissions accordingly:
+
+```shell
+  #Changing the file permissions.
+  chmod +x /etc/cron.hourly/<filename>
+
+  #You can test that the script is running correctly by using this command.
+  run-parts /etc/cron.hourly
+
+  #if you don't recieve any output, the script has not run.
+  ```
+
+*Please note when naming the file within $HOME/etc/..., you cannot use file fullstops '.' or file extenstions. Only valid characters are allowed [a-zA-Z0-9_-]*
